@@ -4,9 +4,9 @@ kind: Kustomization
 namespace: minio-operator
 
 resources:
-  - base/minio-operator.yaml
+  - upstream/minio-operator.yaml
 
 images:
-- name: minio/k8s-operator
-  newName: minio/k8s-operator
-  newTag: 2.0.4
+  - name: minio/k8s-operator
+    newName: minio/k8s-operator
+    newTag: 2.0.4
