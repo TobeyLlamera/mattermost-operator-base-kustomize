@@ -9,4 +9,4 @@ resources:
 images:
   - name: minio/k8s-operator
     newName: minio/k8s-operator
-    newTag: 2.0.4
+    newTag: 3.0.19
