@@ -1,12 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: minio-operator
+namespace: mattermost-operator
 
 resources:
   - upstream
 
 images:
-  - name: minio/k8s-operator
-    newName: minio/k8s-operator
-    newTag: v3.0.19
+  - name: mattermost/mattermost-operator
+    newName: mattermost/mattermost-operator
+    newTag: v1.8.0

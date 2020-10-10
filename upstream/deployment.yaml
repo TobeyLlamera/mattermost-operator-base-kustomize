@@ -1,29 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio-operator
-  namespace: default
+  name: mattermost-operator
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: minio-operator
+      name: mattermost-operator
   template:
     metadata:
       labels:
-        name: minio-operator
+        name: mattermost-operator
     spec:
-      serviceAccountName: minio-operator
+      serviceAccountName: mattermost-operator
       containers:
-        - name: minio-operator
-          image: minio/k8s-operator:v3.0.19
+        - name: mattermost-operator
+          image: mattermost/mattermost-operator:latest
+          command:
+          - mattermost-operator
           imagePullPolicy: IfNotPresent
-          resources:
-            requests:
-              cpu: 200m
-              memory: 256Mi
-              ephemeral-storage: 500Mi
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
+          env:
+            - name: WATCH_NAMESPACE
+              value: ""
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "mattermost-operator"
